@@ -1,13 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Global } from '@emotion/react';
+
+import globalStyles from './styles/global';
+import { Container } from './ui-components';
+import Title from './layout/title';
+
 import store from './store';
 
-interface AppProps {
-  name: string;
-}
-const App = (props: AppProps) => (
+const App = () => (
   <Provider store={store}>
-    <h1>Hello, {`${props.name}!`}</h1>
+    <Global styles={globalStyles} />
+    <Container>
+      <Title />
+      {/* <Tabs />
+      <Catalog />
+      <Product /> */}
+    </Container>
   </Provider>
 )
 

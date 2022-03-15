@@ -30,6 +30,12 @@ module.exports = (env) => {
           test: /\.css$/,
           use: ["style-loader", "css-loader"]
         },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          type: 'asset/resource',
+          dependency: { not: ['url'] },
+          // use: "file-loader"
+        },
       ]
     },
     resolve: {
