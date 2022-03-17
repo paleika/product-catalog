@@ -12,13 +12,15 @@ type TypographyVariant =
 type Color =
   | 'background'
   | 'black'
-  | 'darkBackground'
+  | 'backgroundDark'
   | 'darkGrey'
   | 'grey'
   | 'light'
   | 'mediumGrey'
   | 'primary'
+  | 'primaryDark'
   | 'secondary'
+  | 'smoke'
   | 'white';
 
 export type {

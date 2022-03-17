@@ -1,0 +1,45 @@
+import React from 'react';
+import styled from '@emotion/styled';
+import { Card, Chip, ChipList, Typography } from '../ui-components';
+
+const StyledWrapper = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+})
+
+const StyledContent = styled.div({
+  flexGrow: 1,
+})
+
+const StyledTypography = styled(Typography)({
+  marginBottom: 8,
+});
+
+const ProductCard = () => {
+  return (
+    <Card fullWidth>
+      <StyledWrapper>
+        <StyledContent>
+          <StyledTypography variant='h3'>Adobe Illustrator</StyledTypography>
+          <ChipList>
+            <Chip label="PDF" />
+            <Chip label="Business" />
+            <Chip label="Maintenance" />
+            <Chip label="Create" />
+            <Chip label="Something long" />
+            <Chip label="Another" />
+            <Chip label="Editor" />
+            <Chip label="Vemiam" />
+            <Chip label="SED" />
+            <Chip label="Aliqua" />
+          </ChipList>
+        </StyledContent>
+        <div>
+          <Typography variant='subtitle' color="darkGrey">Daily Business</Typography>
+        </div>
+      </StyledWrapper >
+    </Card>
+  )
+};
+
+export default ProductCard;

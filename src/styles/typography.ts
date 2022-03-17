@@ -10,6 +10,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   h1: {
     component: 'h1',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 400,
       fontSize: 18,
       lineHeight: '21.09px',
@@ -18,6 +19,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   h2: {
     component: 'h2',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 500,
       fontSize: 16,
       lineHeight: '20px',
@@ -26,6 +28,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   h3: {
     component: 'h3',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 500,
       fontSize: 14,
       lineHeight: '20.61px',
@@ -34,6 +37,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   button: {
     component: 'div',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 500,
       fontSize: 14,
       lineHeight: '16px',
@@ -50,6 +54,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   action2: {
     component: 'div',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 500,
       fontSize: 12,
       lineHeight: '15px',
@@ -58,6 +63,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   subtitle: {
     component: 'div',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 400,
       fontSize: 14,
       lineHeight: '24px',
@@ -66,6 +72,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   body1: {
     component: 'div',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 400,
       fontSize: 14,
       lineHeight: '24px',
@@ -74,6 +81,7 @@ const typographyMap: Record<TypographyVariant, TypographyConfig> = {
   body2: {
     component: 'div',
     style: {
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 400,
       fontSize: 14,
       lineHeight: '20px',
