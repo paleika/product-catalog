@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import palette from '../styles/palette';
 import Typography from './typography';
 import { Color, TypographyVariant } from '../types';
+import humanized from '../utils/humanized';
 
 const StyledLabel = styled.label({
   display: 'block',
@@ -65,23 +66,26 @@ const StyledTypography = styled(Typography)({
 
 interface CheckboxProps {
   checked?: boolean;
-  handleChange?: (value: boolean) => void;
-  label: string;
+  value: string;
+  handleChange?: (checked: boolean, value: string) => void;
+  label?: string;
   labelVariant?: TypographyVariant;
   labelColor?: Color;
 }
 
-const Checkbox = ({ label, labelVariant, labelColor, handleChange, checked = false }: CheckboxProps) => {
+const Checkbox = ({ value, label, labelVariant, labelColor, handleChange, checked = false }: CheckboxProps) => {
   const [isChecked, setIsChecked] = React.useState(checked);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
-    handleChange && handleChange(e.target.checked);
+    handleChange && handleChange(e.target.checked, value);
   };
 
   return (
     <StyledLabel>
-      <StyledTypography variant={labelVariant} color={labelColor}>{label}</StyledTypography>
+      <StyledTypography variant={labelVariant} color={labelColor}>
+        {label || humanized(value)}
+      </StyledTypography>
       <HiddenInput type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
       <StyledSpan />
     </StyledLabel>
