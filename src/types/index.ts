@@ -23,7 +23,12 @@ type Color =
   | 'smoke'
   | 'white';
 
+interface SVGIconProps {
+  color?: Color;
+}
+
 export type {
   Color,
   TypographyVariant,
+  SVGIconProps,
 };

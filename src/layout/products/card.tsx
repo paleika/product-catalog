@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Card, Chip, ChipList, Typography } from '../ui-components';
+import { Card, Chip, ChipList, Typography } from '../../ui-components';
 
 const StyledWrapper = styled.div({
   display: 'flex',
@@ -11,16 +11,21 @@ const StyledContent = styled.div({
   flexGrow: 1,
 })
 
-const StyledTypography = styled(Typography)({
+const StyledTitle = styled(Typography)({
   marginBottom: 8,
 });
+
+const StyledSubtitle = styled(Typography)({
+  whiteSpace: 'nowrap',
+  marginLeft: 16,
+})
 
 const ProductCard = () => {
   return (
     <Card fullWidth>
       <StyledWrapper>
         <StyledContent>
-          <StyledTypography variant='h3'>Adobe Illustrator</StyledTypography>
+          <StyledTitle variant='h3'>Adobe Illustrator</StyledTitle>
           <ChipList>
             <Chip label="PDF" />
             <Chip label="Business" />
@@ -35,7 +40,7 @@ const ProductCard = () => {
           </ChipList>
         </StyledContent>
         <div>
-          <Typography variant='subtitle' color="darkGrey">Daily Business</Typography>
+          <StyledSubtitle variant='subtitle' color="darkGrey">Daily Business</StyledSubtitle>
         </div>
       </StyledWrapper >
     </Card>
