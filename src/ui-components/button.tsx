@@ -5,11 +5,13 @@ import typographyMap from '../styles/typography';
 
 interface ButtonProps {
   children: React.ReactNode;
-  handleClick: () => void;
   className?: string;
+  component?: 'button' | 'a';
+  handleClick?: () => void;
+  href?: string;
 }
 
-const StyledButton = styled.button({
+const buttonStyle = {
   ...typographyMap.button.style,
   border: 'none',
   color: palette.white,
@@ -23,9 +25,22 @@ const StyledButton = styled.button({
     backgroundColor: palette.primaryDark,
     boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
   },
+};
+
+const StyledButton = styled.button(buttonStyle);
+const StyledLink = styled.a({
+  ...buttonStyle,
+  display: 'inline-block',
+  textDecoration: 'none',
 });
 
-const Button = ({ children, handleClick, className }: ButtonProps) => {
+const Button = ({ children, handleClick, component = 'button', href, className }: ButtonProps) => {
+  if (component === 'a') {
+    return (
+      <StyledLink href={href} className={className} target="_blank">{children}</StyledLink>
+    )
+  }
+
   return (
     <StyledButton onClick={handleClick} className={className}>{children}</StyledButton>
   )

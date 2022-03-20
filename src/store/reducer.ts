@@ -40,6 +40,14 @@ const reducer = (state: State = initialState, action: Action): State => {
         ? selectedCategories.filter((item) => item !== category)
         : selectedCategories.concat(category);
 
+      if (searchTerm.length === 0) {
+        return assoc(
+          state,
+          'filteredProducts', [],
+          'selectedProduct', null,
+        );
+      }
+
       const newFiltered = filterProducts({
         array: products,
         categories: newSelected,
@@ -50,6 +58,7 @@ const reducer = (state: State = initialState, action: Action): State => {
         state,
         'selectedCategories', newSelected,
         'filteredProducts', newFiltered,
+        'selectedProduct', null,
       );
     };
 
@@ -61,6 +70,7 @@ const reducer = (state: State = initialState, action: Action): State => {
           state,
           'searchTerm', term,
           'filteredProducts', [],
+          'selectedProduct', null,
         );
       }
 
@@ -76,8 +86,18 @@ const reducer = (state: State = initialState, action: Action): State => {
         state,
         'searchTerm', term,
         'filteredProducts', newFiltered,
+        'selectedProduct', null,
       );
     };
+
+    case actions.SET_SELECTED_PRODUCT: {
+      const { payload: selectedIndex } = action;
+
+      return assoc(
+        state,
+        'selectedProduct', selectedIndex,
+      )
+    }
 
     default: {
       return state;

@@ -3,7 +3,6 @@ import { ProductShape } from "../types/products";
 type AppStatus =
   | 'initial'
   | 'fetched'
-  | 'ready'
   | 'error';
 
 interface State {
@@ -36,8 +35,14 @@ type SetTermAction = {
   payload: string;
 }
 
+type SetSelectedProductAction = {
+  type: 'SET_SELECTED_PRODUCT';
+  payload: number | null;
+}
+
 type Action =
   | SetProductsAction
+  | SetSelectedProductAction
   | SetStatusAction
   | SetTermAction
   | ToggleCategoryAction;

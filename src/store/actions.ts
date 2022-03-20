@@ -3,6 +3,7 @@ const actions = {
   SET_STATUS: 'SET_STATUS',
   SET_TERM: 'SET_TERM',
   TOGGLE_CATEGORY: 'TOGGLE_CATEGORY',
+  SET_SELECTED_PRODUCT: 'SET_SELECTED_PRODUCT',
 } as const;
 
 export default actions;

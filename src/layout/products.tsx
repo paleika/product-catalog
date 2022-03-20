@@ -26,10 +26,9 @@ const mockDataPromise = new Promise<ProductShape[]>((resolve) => {
   setTimeout(() => resolve(mockProducts), 500);
 });
 
-
-
 const Products = () => {
   const status = useSelector((state) => state.status);
+  const selectedProduct = useSelector((state) => state.selectedProduct);
   const filteredLength = useSelector((state) => state.filteredProducts.length);
   const dispatch = useDispatch();
 
@@ -57,7 +56,7 @@ const Products = () => {
           {[...Array(filteredLength)].map((_item, index) => <ProductCard key={`card_${index}`} index={index} />)}
         </StyledTable>
 
-        <ProductDetails />
+        {selectedProduct !== null && <ProductDetails index={selectedProduct} />}
       </StyledContent>
     </>
   )
