@@ -34,7 +34,6 @@ module.exports = (env) => {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
           type: 'asset/resource',
           dependency: { not: ['url'] },
-          // use: "file-loader"
         },
       ]
     },
