@@ -4,6 +4,8 @@ import Checkbox from "./checkbox";
 import Chip from "./chip";
 import ChipList from "./chip-list";
 import Container from "./container";
+import Radio from "./radio";
+import Tabs from "./tabs";
 import Typography from "./typography";
 
 export {
@@ -13,5 +15,7 @@ export {
   Chip,
   ChipList,
   Container,
+  Radio,
+  Tabs,
   Typography,
 };

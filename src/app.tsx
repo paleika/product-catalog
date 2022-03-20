@@ -4,7 +4,7 @@ import { Global, css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 
 import globalStyles from './styles/global';
-import { Button, Card, Checkbox, Container, Typography } from './ui-components';
+import { Button, Card, Checkbox, Container, Radio, Tabs, Typography } from './ui-components';
 import Title from './layout/title';
 
 import store from './store';
@@ -17,6 +17,26 @@ const App = () => (
     <Global styles={globalStyles} />
     <Container>
       <Title />
+
+      <Tabs activeValue="product">
+        <Tabs.Panel value="product">
+          <div>
+            <Radio value="option1" label='Option 1' />
+            <Radio value="option2" label='Option 2'>
+              <Typography>Some additional info on the point</Typography>
+            </Radio>
+          </div>
+        </Tabs.Panel>
+        <Tabs.Panel value="addresses">
+          <div>Here will be some more content</div>
+        </Tabs.Panel>
+        <Tabs.Panel value="overview" disabled>
+          <div />
+        </Tabs.Panel>
+      </Tabs>
+
+
+
       <Card fullWidth>
         <Card.Header>
           <Typography variant='h2'>I'm looking for...</Typography>
@@ -33,11 +53,6 @@ const App = () => (
         <div style={{ height: 12 }} />
         <Checkbox label="Get food" labelVariant='action1' labelColor='darkGrey' />
       </Card>
-
-
-      {/* <Tabs />
-      <Catalog />
-      <Product /> */}
     </Container>
   </Provider>
 )

@@ -28,10 +28,10 @@ const StyledLabel = styled.label({
   '& span:after': {
     left: '4px',
     top: '1px',
-    width: '3px',
-    height: '6px',
+    width: '4px',
+    height: '7px',
     border: 'solid white',
-    borderWidth: '0 3px 3px 0',
+    borderWidth: '0 2px 2px 0',
     transform: 'rotate(45deg)',
   }
 });
@@ -64,16 +64,25 @@ const StyledTypography = styled(Typography)({
 })
 
 interface CheckboxProps {
+  checked?: boolean;
+  handleChange?: (value: boolean) => void;
   label: string;
   labelVariant?: TypographyVariant;
   labelColor?: Color;
 }
 
-const Checkbox = ({ label, labelVariant, labelColor }: CheckboxProps) => {
+const Checkbox = ({ label, labelVariant, labelColor, handleChange, checked = false }: CheckboxProps) => {
+  const [isChecked, setIsChecked] = React.useState(checked);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+    handleChange && handleChange(e.target.checked);
+  };
+
   return (
     <StyledLabel>
       <StyledTypography variant={labelVariant} color={labelColor}>{label}</StyledTypography>
-      <HiddenInput type="checkbox" />
+      <HiddenInput type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
       <StyledSpan />
     </StyledLabel>
   )

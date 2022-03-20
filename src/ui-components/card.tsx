@@ -27,7 +27,6 @@ const StyledDiv = styled.div<CardProps>(({ fullWidth, outline }) => {
 });
 
 const Card = ({ children, fullWidth, outline, className }: CardProps) => {
-  console.log('Card', outline)
   return (
     <StyledDiv
       fullWidth={fullWidth}
