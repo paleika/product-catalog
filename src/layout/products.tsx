@@ -23,7 +23,7 @@ const StyledTable = styled.div({
 });
 
 const mockDataPromise = new Promise<ProductShape[]>((resolve) => {
-  setTimeout(() => resolve(mockProducts), 500);
+  setTimeout(() => resolve(mockProducts), 1500);
 });
 
 const Products = () => {

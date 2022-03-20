@@ -25,7 +25,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 
       return assoc(
         state,
-        'status', 'fetched',
+        'status', 'ready',
         'products', fetchedProducts,
         'categories', uniqueValues(allCategories),
       );

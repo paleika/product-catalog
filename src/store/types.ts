@@ -2,7 +2,7 @@ import { ProductShape } from "../types/products";
 
 type AppStatus =
   | 'initial'
-  | 'fetched'
+  | 'ready'
   | 'error';
 
 interface State {
