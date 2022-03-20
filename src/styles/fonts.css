@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/roboto-v29-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/roboto-v29-latin-500.woff2') format('woff2');
+}
