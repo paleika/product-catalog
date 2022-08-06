@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 import ProductFilter from './products/filter'
 import ProductCard from './products/card';
 import ProductDetails from './products/details';
-import { useDispatch, useSelector } from '../store';
-import actions from '../store/actions';
+import { observer } from 'mobx-react-lite';
+import { usePCStore } from '../store/context';
+
 import mockProducts from './products/mock-products';
 import Spinner from '../assets/spinner';
 import { ProductShape } from '../types/products';
@@ -26,18 +27,12 @@ const mockDataPromise = new Promise<ProductShape[]>((resolve) => {
   setTimeout(() => resolve(mockProducts), 1500);
 });
 
-const Products = () => {
-  const status = useSelector((state) => state.status);
-  const selectedProduct = useSelector((state) => state.selectedProduct);
-  const filteredLength = useSelector((state) => state.filteredProducts.length);
-  const dispatch = useDispatch();
+const Products = observer(() => {
+  const { filteredLength, selectedProduct, setProducts } = usePCStore();
 
   const fetchProducts = async () => {
     const products = await mockDataPromise;
-    dispatch({
-      type: actions.SET_PRODUCTS,
-      payload: products,
-    });
+    setProducts(products);
   };
 
   React.useEffect(() => {
@@ -60,6 +55,6 @@ const Products = () => {
       </StyledContent>
     </>
   )
-};
+});
 
 export default Products;

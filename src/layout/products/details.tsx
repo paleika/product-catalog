@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Button, Card, Chip, ChipList, Radio, Typography } from '../../ui-components';
-import { useSelector } from '../../store';
+// import { useSelector } from '../../store-legacy';
+import { usePCStore } from '../../store/context';
 
 const StyledCard = styled(Card)({
   flex: '0 0 320px',
@@ -34,7 +35,8 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ index }: ProductDetailsProps) => {
-  const product = useSelector((state) => state.filteredProducts[index]);
+  const store = usePCStore();
+  const product = store.filteredProducts[index];
 
   const { option1, option2 } = product;
 
