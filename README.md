@@ -5,6 +5,7 @@ Application is a model of a product catalogue.
 ### Features:
 - user can search for the product and filter the results by categories
 - user can see the detailed information about the product
+- user can edit product name
 
 ### Description:
 - all the UI components are reusable (see `src/ui-components`)
@@ -13,7 +14,7 @@ Application is a model of a product catalogue.
 ## Technologies
 1. React
 1. TypeScript
-1. Redux
+1. ~~Redux~~ MobX
 1. Emotion
 
 ## Launch
