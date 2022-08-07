@@ -1,11 +1,11 @@
-import { computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-import { filterProducts, uniqueValues } from '../utils/array-helpers';
+import { enrichWithId, filterProducts, uniqueValues } from '../utils/array-helpers';
 
 import { AppStatus } from './types';
-import { ProductShape } from '../types/products';
+import { FetchedProductShape, ProductShape } from '../types/products';
 
-class Store {
+class PCStore {
   public status: AppStatus = 'initial';
 
   public products: ProductShape[] = [];
@@ -14,7 +14,7 @@ class Store {
 
   public selectedCategories: string[] = [];
 
-  public selectedProduct: number | null = null;
+  public selectedProductId: string = '';
 
   constructor() {
     makeObservable(this, {
@@ -22,10 +22,13 @@ class Store {
       products: observable,
       searchTerm: observable,
       selectedCategories: observable,
-      selectedProduct: observable,
+      selectedProductId: observable,
       filteredProducts: computed,
-      filteredLength: computed,
       categories: computed,
+      setSelectedProductId: action,
+      toggleCategory: action,
+      setTerm: action,
+      setProducts: action,
     });
   }
 
@@ -37,21 +40,14 @@ class Store {
     });
   }
 
-  get filteredLength() {
-    const filteredProducts = filterProducts({
-      array: this.products,
-      categories: this.selectedCategories,
-      term: this.searchTerm
-    });
-    return filteredProducts.length;
-  }
-
   get categories() {
     return uniqueValues(this.products.map((item) => item.category));
   }
 
-  public setProducts = (payload: ProductShape[]) => {
-    this.products = payload;
+
+  public setProducts = (payload: FetchedProductShape[]) => {
+    const productsWithIds = enrichWithId(payload);
+    this.products = productsWithIds;
     this.status = 'ready';
   }
 
@@ -64,17 +60,26 @@ class Store {
 
   public setTerm = (term: string) => {
     this.searchTerm = term;
-    this.selectedProduct = null;
+    this.selectedProductId = '';
   }
 
-  public setSelectedProduct = (index: number) => {
-    this.selectedProduct = (this.selectedProduct === index)
-      ? null
-      : index;
+  public setSelectedProductId = (id: string) => {
+    this.selectedProductId = (this.selectedProductId === id) ? '' : id;
+  }
+
+  public getProductById = (id: string) => {
+    return this.products.find((item) => item.id === id);
+  }
+
+  public updateProductById = (id: string, newProduct: ProductShape) => {
+    const productIndexById = this.products.findIndex((product) => product.id === id);
+    if (productIndexById > -1) {
+      this.products[productIndexById] = newProduct;
+    }
   }
 }
 
-const store = new Store();
+const store = new PCStore();
 
 export default store;
-export { Store };
+export { PCStore };

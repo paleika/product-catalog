@@ -1,4 +1,5 @@
-import { ProductShape } from "../types/products";
+import { nanoid } from 'nanoid';
+import { FetchedProductShape, ProductShape } from "../types/products";
 
 interface FilterProductsArgs {
   array: ProductShape[];
@@ -28,10 +29,13 @@ const filterProducts = ({ array, categories, term }: FilterProductsArgs) => {
 
   const termRegexp = new RegExp(term, "i");
 
-  return categorizedArray.filter((item) => checkSearchTerm(item, termRegexp));
+  return categorizedArray.filter((item) => checkSearchTerm(item, termRegexp)).map((item) => item.id);
 };
 
+const enrichWithId = (array: FetchedProductShape[]): ProductShape[] => array.map((item) => ({ ...item, id: nanoid() }));
+
 export {
+  enrichWithId,
   filterProducts,
   uniqueValues,
 }

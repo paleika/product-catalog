@@ -1,6 +1,6 @@
 import { ProductShape } from "../../types/products";
 
-const mockProducts: ProductShape[] = [
+const mockProducts: Omit<ProductShape, "id">[] = [
   {
     "productName": "Foxit software PhantomPDF Standard",
     "tags": [

@@ -1,7 +1,7 @@
 import React from 'react';
-import store, { Store } from './index';
+import store, { PCStore } from './index';
 
-const PCStoreContext = React.createContext<Store>(store);
+const PCStoreContext = React.createContext<PCStore>(store);
 
 const usePCStore = () => React.useContext(PCStoreContext);
 

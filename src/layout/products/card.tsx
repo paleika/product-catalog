@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Card, Chip, ChipList, Typography } from '../../ui-components';
 import { usePCStore } from '../../store/context';
 import { observer } from 'mobx-react-lite';
+import { ProductShape } from '../../types/products';
 
 const StyledWrapper = styled.div({
   display: 'flex',
@@ -23,17 +24,23 @@ const StyledSubtitle = styled(Typography)({
 });
 
 interface ProductCardProps {
-  index: number;
+  // productId: string;
+  product: ProductShape | undefined;
+  isSelected: boolean;
 }
 
-const ProductCard = observer(({ index }: ProductCardProps) => {
+const ProductCard = ({ product, isSelected }: ProductCardProps) => {
   const store = usePCStore();
-  const product = store.filteredProducts[index];
-  const isSelected = store.selectedProduct === index;
+  // const product = store.getProductById(productId);
+  // const isSelected = store.selectedProductId === productId;
+
+  if (product === undefined) {
+    return null;
+  }
 
   const handleCardClick = React.useCallback(() => {
-    store.setSelectedProduct(index);
-  }, [index]);
+    store.setSelectedProductId(product.id);
+  }, []);
 
   return (
     <div onClick={handleCardClick}>
@@ -54,6 +61,6 @@ const ProductCard = observer(({ index }: ProductCardProps) => {
       </Card>
     </div>
   )
-});
+};
 
-export default ProductCard;
+export default observer(ProductCard);

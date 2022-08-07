@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Card, Checkbox, Input, Typography } from '../../ui-components';
 import SearchIcon from '../../assets/search-icon';
 import { usePCStore } from '../../store/context';
+import { observer } from 'mobx-react-lite';
 
 const StyledGroupsBar = styled.div({
   display: 'flex',
@@ -15,7 +16,7 @@ const StyledInput = styled(Input)({
   marginBottom: 18,
 });
 
-const ProductFilter = React.memo(() => {
+const ProductFilter = () => {
   const { categories, toggleCategory, setTerm } = usePCStore();
 
   const handleSelectCategory = React.useCallback((_checked: boolean, value: string) => {
@@ -49,6 +50,6 @@ const ProductFilter = React.memo(() => {
       />
     </Card>
   )
-});
+};
 
-export default ProductFilter;
+export default observer(ProductFilter);
