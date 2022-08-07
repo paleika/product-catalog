@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Card, Chip, ChipList, Typography } from '../../ui-components';
-import { useDispatch, useSelector } from '../../store';
-import actions from '../../store/actions';
+import { usePCStore } from '../../store/context';
+import { observer } from 'mobx-react-lite';
+import { ProductShape } from '../../types/products';
 
 const StyledWrapper = styled.div({
   display: 'flex',
@@ -23,20 +24,23 @@ const StyledSubtitle = styled(Typography)({
 });
 
 interface ProductCardProps {
-  index: number;
+  // productId: string;
+  product: ProductShape | undefined;
+  isSelected: boolean;
 }
 
-const ProductCard = ({ index }: ProductCardProps) => {
-  const product = useSelector((state) => state.filteredProducts[index]);
-  const isSelected = useSelector((state) => state.selectedProduct === index);
-  const dispatch = useDispatch();
+const ProductCard = ({ product, isSelected }: ProductCardProps) => {
+  const store = usePCStore();
+  // const product = store.getProductById(productId);
+  // const isSelected = store.selectedProductId === productId;
+
+  if (product === undefined) {
+    return null;
+  }
 
   const handleCardClick = React.useCallback(() => {
-    dispatch({
-      type: actions.SET_SELECTED_PRODUCT,
-      payload: isSelected ? null : index,
-    })
-  }, [index, isSelected]);
+    store.setSelectedProductId(product.id);
+  }, []);
 
   return (
     <div onClick={handleCardClick}>
@@ -59,4 +63,4 @@ const ProductCard = ({ index }: ProductCardProps) => {
   )
 };
 
-export default ProductCard;
+export default observer(ProductCard);

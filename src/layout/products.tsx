@@ -2,12 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import ProductFilter from './products/filter'
 import ProductCard from './products/card';
-import ProductDetails from './products/details';
-import { useDispatch, useSelector } from '../store';
-import actions from '../store/actions';
+import ProductDetailsCard from './products/details';
+import { observer } from 'mobx-react-lite';
+import { usePCStore } from '../store/context';
+
 import mockProducts from './products/mock-products';
 import Spinner from '../assets/spinner';
-import { ProductShape } from '../types/products';
+import { FetchedProductShape } from '../types/products';
 
 const StyledContent = styled.div({
   display: 'flex',
@@ -22,22 +23,16 @@ const StyledTable = styled.div({
   gap: 8,
 });
 
-const mockDataPromise = new Promise<ProductShape[]>((resolve) => {
+const mockDataPromise = new Promise<FetchedProductShape[]>((resolve) => {
   setTimeout(() => resolve(mockProducts), 1500);
 });
 
-const Products = () => {
-  const status = useSelector((state) => state.status);
-  const selectedProduct = useSelector((state) => state.selectedProduct);
-  const filteredLength = useSelector((state) => state.filteredProducts.length);
-  const dispatch = useDispatch();
+const Products = observer(() => {
+  const { filteredProducts, setProducts, status, selectedProductId, getProductById } = usePCStore();
 
   const fetchProducts = async () => {
     const products = await mockDataPromise;
-    dispatch({
-      type: actions.SET_PRODUCTS,
-      payload: products,
-    });
+    setProducts(products);
   };
 
   React.useEffect(() => {
@@ -53,13 +48,19 @@ const Products = () => {
       <StyledContent>
         <StyledTable>
           <ProductFilter />
-          {[...Array(filteredLength)].map((_item, index) => <ProductCard key={`card_${index}`} index={index} />)}
+          {filteredProducts.map((id) => (
+            <ProductCard
+              key={`card_${id}`}
+              product={getProductById(id)}
+              isSelected={id === selectedProductId}
+            />
+          ))}
         </StyledTable>
 
-        {selectedProduct !== null && <ProductDetails index={selectedProduct} />}
+        {selectedProductId && <ProductDetailsCard />}
       </StyledContent>
     </>
   )
-};
+});
 
 export default Products;

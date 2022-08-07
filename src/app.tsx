@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { Global, css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 
@@ -7,11 +6,11 @@ import globalStyles from './styles/global';
 import { Container, Tabs } from './ui-components';
 import Title from './layout/title';
 
-import store from './store';
+import { PCStoreProvider } from './store/context';
 import Products from './layout/products';
 
 const App = () => (
-  <Provider store={store}>
+  <PCStoreProvider>
     <Global styles={css`${emotionReset}`} />
     <Global styles={globalStyles} />
     <Container>
@@ -29,7 +28,7 @@ const App = () => (
         </Tabs.Panel>
       </Tabs>
     </Container>
-  </Provider>
+  </PCStoreProvider>
 )
 
 export default App;

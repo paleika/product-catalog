@@ -1,4 +1,5 @@
 interface ProductShape {
+  id: string;
   productName: string;
   tags: string[];
   category: string;
@@ -8,6 +9,9 @@ interface ProductShape {
   option2: string | null;
 }
 
+type FetchedProductShape = Omit<ProductShape, "id">;
+
 export type {
+  FetchedProductShape,
   ProductShape,
 }
