@@ -20,3 +20,5 @@ Application is a model of a product catalogue.
 ## Launch
 
 **yarn start** starts a development build on `localhost:8080`
+
+**yarn storybook** runs a Storybook on `localhost:6006`
